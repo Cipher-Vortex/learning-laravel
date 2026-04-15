@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('auth', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
@@ -21,7 +22,7 @@ return new class extends Migration
         });
     }
 
-    /**
+    /**s
      * Reverse the migrations.
      */
     public function down(): void

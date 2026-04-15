@@ -12,7 +12,13 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::all();
+        // TO get all ideas from the database
+        // $ideas = Idea::all();
+
+        // To get ideas for a specific user
+        $ideas = Idea::query()->where({
+            'user_id'=> ,
+        })
         return view('ideas.index', ['ideas' => $ideas]);
     }
 

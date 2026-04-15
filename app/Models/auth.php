@@ -8,4 +8,5 @@ class auth extends Model
 {
     //
     
+    
 }

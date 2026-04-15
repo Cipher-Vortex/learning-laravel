@@ -65,7 +65,7 @@
 
             <input type="password" name="password" placeholder="Password" required>
 
-            <button type="submit">register</button>
+            <button data-test="register-button" type="submit">register</button>
         </form>
                 <span class="siginrow">Have a account <a href="/login" >login</a></span>
 

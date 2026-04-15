@@ -57,13 +57,14 @@ Route::post('/entry', function() {
 
 // GETTING DATA FROM THE DATABASE USING IDEA MODEL
 
+Route::middleware('auth')->group( function (){
 
 Route::get('/ideas', [IdeaController::class, 'index']);
 
 // create new idea
 Route::get('/create/new', [IdeaController::class, 'create']);
 Route::post('/ideas/create', [IdeaController::class, 'store']);
-
+    
 //View Idea
 Route::get('/ideas/view/{idea}', [IdeaController::class, 'show'])->name('ideas.view');
 
@@ -76,7 +77,7 @@ Route::patch('/ideas/edit/{idea}', [IdeaController::class , 'update'])->name('id
 //Delete Idea
 Route::delete('/ideas/delete/{idea}',[IdeaController::class, 'destroy'])->name('ideas.destroy');
 
-
+});
 // ========================   User Login  ========================   
 
 Route::get('/login', function() {
