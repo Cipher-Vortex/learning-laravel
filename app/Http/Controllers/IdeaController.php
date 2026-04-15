@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IdeaRequestController;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 
@@ -13,9 +12,8 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        //
-$ideas = Idea::all();
-return view('ideas/index', ['ideas' => $ideas]);
+        $ideas = Idea::all();
+        return view('ideas.index', ['ideas' => $ideas]);
     }
 
     /**
@@ -23,11 +21,7 @@ return view('ideas/index', ['ideas' => $ideas]);
      */
     public function create()
     {
-        //route to create new idea form 
-        
-            return view('ideas/create');
-        
-        
+        return view('ideas.create');
     }
 
     /**
@@ -35,16 +29,15 @@ return view('ideas/index', ['ideas' => $ideas]);
      */
     public function store(Request $request)
     {
-        //
-        // request()->validate([
-        //     'ideas' => 'required','min:10']);
-           Idea::create([
-        'ideas' =>request('ideas'),
-        // 'created_at' => now(),
-        // 'updated_at' => now(),
+        $request->validate([
+            'ideas' => 'required|min:3',
         ]);
-        // return view('ideas');
-       return redirect('/ideas/index');
+
+        Idea::create([
+            'ideas' => $request->ideas,
+        ]);
+
+        return redirect('/ideas');
     }
 
     /**
@@ -52,8 +45,7 @@ return view('ideas/index', ['ideas' => $ideas]);
      */
     public function show(Idea $idea)
     {
-        //
-        return view('ideas.view',['idea' => $idea]);
+        return view('ideas.view', compact('idea'));
     }
 
     /**
@@ -61,9 +53,7 @@ return view('ideas/index', ['ideas' => $ideas]);
      */
     public function edit(Idea $idea)
     {
-        //
-        //  $idea = Idea::findOrFail($id);
-return view('ideas/edit', ['idea' => $idea]);
+        return view('ideas.edit', compact('idea'));
     }
 
     /**
@@ -71,16 +61,15 @@ return view('ideas/edit', ['idea' => $idea]);
      */
     public function update(Request $request, Idea $idea)
     {
-        //
+        $request->validate([
+            'ideas' => 'required|min:3',
+        ]);
 
-            $idea->update(['ideas'=> request('idea')]);
+        $idea->update([
+            'ideas' => $request->ideas,
+        ]);
 
-    }
-    public function viewIdea(Request $request, Idea $id)
-    {
-        //
-        Idea::find($id);
-        return view('ideas.view', ['idea' => $id]);
+        return redirect('/ideas');
     }
 
     /**
@@ -88,8 +77,8 @@ return view('ideas/edit', ['idea' => $idea]);
      */
     public function destroy(Idea $idea)
     {
-        //
-        Idea::destroy($idea->id);
-        return redirect('/ideas/index');
+        $idea->delete();
+
+        return redirect('/ideas');
     }
 }

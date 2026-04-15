@@ -59,8 +59,6 @@
 
         <form method="POST" action="/register">
             @csrf
-            <!-- Laravel CSRF -->
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>

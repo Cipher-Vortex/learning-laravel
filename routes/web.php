@@ -66,19 +66,19 @@ Route::get('/ideas', [IdeaController::class, 'index']);
 
 
 // create new idea
-Route::get('/createIdea', [IdeaController::class, 'create']);
+Route::get('/create/new', [IdeaController::class, 'create']);
 Route::post('/ideas/create', [IdeaController::class, 'store']);
 
 //View Idea
-Route::get('/ideas/view/{id}', [IdeaController::class, 'viewIdea'])->name('ideas.view');
+Route::get('/ideas/view/{idea}', [IdeaController::class, 'show'])->name('ideas.view');
 
 // edit
-Route::get('/ideas/edit/{id}',[IdeaController::class , 'edit'])->name('ideas.edit');
+Route::get('/ideas/edit/{idea}',[IdeaController::class , 'edit'])->name('ideas.edit');
 
 // update
 Route::patch('/ideas/edit/{idea}', [IdeaController::class , 'update'])->name('ideas.update');
 
 //Delete Idea
-Route::delete('deleteidea/{id}',[IdeaController::class, 'destroy'])->name('ideas.destroy');
+Route::delete('/ideas/delete/{idea}',[IdeaController::class, 'destroy'])->name('ideas.destroy');
 
 
