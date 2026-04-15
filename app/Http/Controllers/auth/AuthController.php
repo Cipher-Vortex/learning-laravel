@@ -24,25 +24,42 @@ $request->validate([
     'password' => 'required',
 ]);
         // store user data in the database
-        User::create([
+        $user =User::create([
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password')),
         ]);
 
         // log the user in
-        // Auth::lo
+        // Auth::user( true);
+        
+Auth::login($user);
         // redirect to the home page
         return redirect('ideas')->with('success', 'Registration successful! You are now logged in.');
    
         }
-    public function login(){
-        return view('auth.login');
+    public function login(Request $request){
+        // validation
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+   if (Auth::attempt([
+    'email' => $request->email,
+    'password' => $request->password
+])) {
+    return redirect('ideas')->with('success', 'Login successful!');
+}
+
+return back()->withErrors([
+    'email' => 'Invalid credentials'
+]);;
     }
     
 
     public function logout(){
-        return view('auth.logout');
+        Auth::logout();
+        return view('auth/login');
     }
 
 }

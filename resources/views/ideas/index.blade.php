@@ -1,3 +1,5 @@
+<x-nav>
+</x-nav>
 <x-card>
     <h3>Ideas:</h3>
     <hr>

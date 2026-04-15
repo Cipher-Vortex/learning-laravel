@@ -50,6 +50,11 @@
         .login-box button:hover {
             background: #2779bd;
         }
+        .siginrow{
+            text-align: center;
+            padding: 10%;
+            margin-top: 20%;
+        }
     </style>
 </head>
 <body>
@@ -57,17 +62,15 @@
     <div class="login-box">
         <h2>Login</h2>
 
-        <form method="POST" action="/register">
+        <form method="POST" action="/login">
             @csrf
-            <!-- Laravel CSRF -->
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-\            <input type="email" name="email" placeholder="Email" required>
+           <input type="email" name="email" placeholder="Email" required>
 
             <input type="password" name="password" placeholder="Password" required>
 
             <button type="submit">Login</button>
         </form>
+        <span class="siginrow">Don't have a account <a href="/register" type="submit">Register</a></span>
     </div>
 
 </body>

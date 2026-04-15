@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>register</title>
 
     <style>
         body {
@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        .login-box {
+        .register-box {
             background: white;
             padding: 25px;
             border-radius: 8px;
@@ -24,12 +24,12 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        .login-box h2 {
+        .register-box h2 {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .login-box input {
+        .register-box input {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -37,7 +37,7 @@
             border-radius: 5px;
         }
 
-        .login-box button {
+        .register-box button {
             width: 100%;
             padding: 10px;
             background: #3490dc;
@@ -47,15 +47,15 @@
             cursor: pointer;
         }
 
-        .login-box button:hover {
+        .register-box button:hover {
             background: #2779bd;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-box">
-        <h2>Login</h2>
+    <div class="register-box">
+        <h2>register</h2>
 
         <form method="POST" action="/register">
             @csrf
@@ -65,8 +65,10 @@
 
             <input type="password" name="password" placeholder="Password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit">register</button>
         </form>
+                <span class="siginrow">Have a account <a href="/login" >login</a></span>
+
     </div>
 
 </body>

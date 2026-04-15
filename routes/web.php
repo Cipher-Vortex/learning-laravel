@@ -57,13 +57,8 @@ Route::post('/entry', function() {
 
 // GETTING DATA FROM THE DATABASE USING IDEA MODEL
 
-Route::get('/login', function() {
-    return view('auth/login');
-});
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/register', [AuthController::class, 'store']);
-Route::get('/ideas', [IdeaController::class, 'index']);
 
+Route::get('/ideas', [IdeaController::class, 'index']);
 
 // create new idea
 Route::get('/create/new', [IdeaController::class, 'create']);
@@ -81,4 +76,14 @@ Route::patch('/ideas/edit/{idea}', [IdeaController::class , 'update'])->name('id
 //Delete Idea
 Route::delete('/ideas/delete/{idea}',[IdeaController::class, 'destroy'])->name('ideas.destroy');
 
+
+// ========================   User Login  ========================   
+
+Route::get('/login', function() {
+    return view('auth/login');
+});
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'store']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
