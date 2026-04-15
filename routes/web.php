@@ -1,5 +1,11 @@
 <?php
 
+// use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\IdeaController;
+use App\Models\Idea;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -33,3 +39,46 @@ Route::post('/entry', function() {
     session()->push('entries', $enteredData);
     return redirect('/data');
 });
+// Route::get('/ideas', function() {
+// //    $ideas = DB::table('ideas')->find(1);
+//    $ideas = DB::table('ideas')->where('id', 1)->first() ||  DB::table('ideas_table')->find(1) ;
+// // $ideas = Idea   
+//    return view('ideas', ['ideas' => $ideas]);
+// });
+
+// GETTING DATA FROM THE DATABASE
+// Route::get('/ideas', function() {
+//     $ideas = DB::table('ideas')->get();
+//     // dd($ideas);
+//     return  $ideas[1]->ideas;
+//     return view('ideas', $ideas[1]);
+//     // return view('ideas', ['ideas' => $ideas]);
+// });
+
+// GETTING DATA FROM THE DATABASE USING IDEA MODEL
+
+Route::get('/login', function() {
+    return view('auth/login');
+});
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'store']);
+Route::get('/ideas', [IdeaController::class, 'index']);
+
+
+// create new idea
+Route::get('/createIdea', [IdeaController::class, 'create']);
+Route::post('/ideas/create', [IdeaController::class, 'store']);
+
+//View Idea
+Route::get('/ideas/view/{id}', [IdeaController::class, 'viewIdea'])->name('ideas.view');
+
+// edit
+Route::get('/ideas/edit/{id}',[IdeaController::class , 'edit'])->name('ideas.edit');
+
+// update
+Route::patch('/ideas/edit/{idea}', [IdeaController::class , 'update'])->name('ideas.update');
+
+//Delete Idea
+Route::delete('deleteidea/{id}',[IdeaController::class, 'destroy'])->name('ideas.destroy');
+
+

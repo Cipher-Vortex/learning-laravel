@@ -1,5 +1,5 @@
 <x-card>
-<form method="POST" action="/entry">
+<form method="POST" action="/createIdea">
   @csrf
   <textarea name="data-entry" required></textarea>
   <button type="submit">Submit</button>
